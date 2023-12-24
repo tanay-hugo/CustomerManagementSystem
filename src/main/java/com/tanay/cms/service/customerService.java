@@ -1,6 +1,7 @@
 package com.tanay.cms.service;
 
 import com.tanay.cms.dao.CustomerDao;
+import com.tanay.cms.exception.CustomerNotFound;
 import com.tanay.cms.model.Customer;
 //import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 //import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+
 //import java.util.concurrent.CopyOnWriteArrayList;
 @Component
 public class customerService {
@@ -62,6 +65,10 @@ public class customerService {
 //                .filter(c -> c.getCustomerId()==id)
 //                .findFirst()
 //                .get();
-        return customerdao.findById(id).get();
+
+        Optional<Customer> optionalcustomer = customerdao.findById(id);
+        if(!optionalcustomer.isPresent())
+            throw new CustomerNotFound("the customer is not available");
+        return optionalcustomer.get();
     }
 }
