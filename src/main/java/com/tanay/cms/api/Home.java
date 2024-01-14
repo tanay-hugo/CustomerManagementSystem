@@ -8,7 +8,7 @@ import java.util.Date;
 @RestController
 public class Home {
     @GetMapping
-    public String home(){
+    public String home(){  
         return "Application is working .. "+new Date();
     }
 }
