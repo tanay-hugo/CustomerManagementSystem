@@ -8,7 +8,7 @@ import java.util.Date;
 @RestController
 public class Home {
 
-    // checking some prs
+    // checking some pr
 
     @GetMapping
     public String home(){  
